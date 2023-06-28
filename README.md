@@ -11,8 +11,8 @@ Tutor : Philip Loy
 Ask Bcs
 
 ## SCREENSHOTS
-[!FIRST SEARCH BAR](
-[!SEARCH CITY DATA](
+
+[!SEARCH CITY DATA](https://github.com/MK0999/shriveled/blob/main/screenshots/Screenshot%20(31).png)
 [!CITIES SEARCHED BEFORE](
 
 ## LINKS
