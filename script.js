@@ -9,12 +9,13 @@ var row1 = document.getElementById("row1");
 var current = document.getElementById("current");
 var city = inputText.value;
 var searchContainer = document.getElementById("box");
+const searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
 
-//const url = `https://weather-by-api-ninjas.p.rapidapi.com/v1/weather?=${city}`;
+
 //var cityName = inputText.value;
 function weather(data){
 var APIkey ="2e0b3e407aa2d7aabd6a36e1042565fb";
-
+// Api of weather to get current weather
 var currenturl =`https://api.openweathermap.org/data/2.5/weather?q=${inputText.value}&appid=${APIkey}&units=metric`;
 fetch(currenturl).then(function (response) {
     if (response.ok) {
@@ -28,7 +29,7 @@ fetch(currenturl).then(function (response) {
                 var cicon = currentdata.weather[0].icon;
 
 
-               current.innerHTML += `<div class="row row-cols- row-cols-md- mb- text-center" id="current">
+               current.innerHTML = `<div class="row row-cols- row-cols-md- mb- text-center" id="current">
       <div class="card mb-4 rounded-3 shadow-sm">
         <div class="card-header py-3" id="datepicker">
           <h4 class="my-0 fw-normal" >${inputText.value}:${dayjs.unix(currentdata.dt).format("MM/DD/YYYY")}</h4>
@@ -51,7 +52,7 @@ fetch(currenturl).then(function (response) {
         }
     })
 
-var APIkey ="2e0b3e407aa2d7aabd6a36e1042565fb";
+
 var url =`https://api.openweathermap.org/geo/1.0/direct?q=${inputText.value}&limit=5&appid=${APIkey}`;
 fetch(url).then(function (response) {
     if (response.ok) {
@@ -117,19 +118,28 @@ fetch(url).then(function (response) {
 
  function cityweather(city){
   var city = inputText.value;
-  const searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
+ 
 searchHistory.push(city);
 localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
  showsearchHistory();
  }
 
+ function targetcity(e){
+  e.preventDefault();
+  if(e.target.classList.add('search-history')){
+
+  }
+
+
+ }
+ //searchContainer.innerHTML="";
  function showsearchHistory(){
   //searchContainer.innerHTML="";
   searchHistory.forEach(city =>{
 var searchHistoryCity = document.createElement('div');
 searchHistoryCity.textContent = city;
 searchHistoryCity.setAttribute('data-city', city);
-searchContainer.appendChild(searchHistoryCity);
+searchContainer.append(searchHistoryCity);
   })
 
  }

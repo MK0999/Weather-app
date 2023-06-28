@@ -31,3 +31,7 @@ h1{
     background-color: rgb(66, 66, 160);
     color: aliceblue;
 }
+#search-history{
+    padding: 2px 15px 2px 15px;
+    
+}
