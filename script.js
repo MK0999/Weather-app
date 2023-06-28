@@ -8,11 +8,11 @@ var datePicker = document.getElementById("datepicker");
 var row1 = document.getElementById("row1");
 var current = document.getElementById("current");
 var city = inputText.value;
-var searchContainer = document.getElementById("box");
+var searchContainer = document.getElementById("container");
 const searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
 
 
-//var cityName = inputText.value;
+
 function weather(data){
 var APIkey ="2e0b3e407aa2d7aabd6a36e1042565fb";
 // Api of weather to get current weather
@@ -22,9 +22,12 @@ fetch(currenturl).then(function (response) {
         response.json()
             .then(function (currentdata) {
                 console.log(currentdata);
+                //CURRENT TEMPERATURE
                 var ctemp = currentdata.main.temp;
+                //CURRENT HUMIDITY
                 var chumidity = currentdata.main.humidity;
                 console.log(chumidity);
+                //CURRENT WIND SPEED
                 var cwind = currentdata.wind.speed;
                 var cicon = currentdata.weather[0].icon;
 
@@ -32,7 +35,7 @@ fetch(currenturl).then(function (response) {
                current.innerHTML = `<div class="row row-cols- row-cols-md- mb- text-center" id="current">
       <div class="card mb-4 rounded-3 shadow-sm">
         <div class="card-header py-3" id="datepicker">
-          <h4 class="my-0 fw-normal" >${inputText.value}:${dayjs.unix(currentdata.dt).format("MM/DD/YYYY")}</h4>
+          <h4 class="my-0 fw-normal" >${data}:${dayjs.unix(currentdata.dt).format("MM/DD/YYYY")}</h4>
         </div>
         <div class="card-body">
           <h1 id="Icon"> <img src ="https://openweathermap.org/img/wn/${cicon}.png"></h1>
@@ -51,9 +54,9 @@ fetch(currenturl).then(function (response) {
             })
         }
     })
+// API TO GET LAT AND LON
 
-
-var url =`https://api.openweathermap.org/geo/1.0/direct?q=${inputText.value}&limit=5&appid=${APIkey}`;
+var url =`https://api.openweathermap.org/geo/1.0/direct?q=${data}&limit=5&appid=${APIkey}`;
 fetch(url).then(function (response) {
     if (response.ok) {
         response.json()
@@ -63,6 +66,7 @@ fetch(url).then(function (response) {
                 console.log(lat);
                 let lon = data[0].lon;
                 
+                // API TO GET 5 DAYS FORECAST
               
                 var weatherUrl =`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${APIkey}&units=metric`;
                
@@ -111,11 +115,15 @@ fetch(url).then(function (response) {
     })
 
 }
+
+// CLICK SEARCH BUTTON FOR DATA
  search.addEventListener("click", function(){
   weather(inputText.value);
   cityweather(city);
  });
 
+
+ // SAVE CITY IN LOCAL STORAGE
  function cityweather(city){
   var city = inputText.value;
  
@@ -132,14 +140,14 @@ localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
 
 
  }
- //searchContainer.innerHTML="";
+ //CREATE LIST OF SEARCHED CITIES
  function showsearchHistory(){
-  //searchContainer.innerHTML="";
+  searchContainer.innerHTML="";
   searchHistory.forEach(city =>{
 var searchHistoryCity = document.createElement('div');
 searchHistoryCity.textContent = city;
 searchHistoryCity.setAttribute('data-city', city);
-searchHistory.addEventListener('click', function(e){
+searchHistoryCity.addEventListener('click', function(e){
   weather(e.target.innerHTML)
 })
 searchContainer.append(searchHistoryCity);

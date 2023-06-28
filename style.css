@@ -33,5 +33,14 @@ h1{
 }
 #search-history{
     padding: 2px 15px 2px 15px;
-    
+
+}
+#container{
+    padding: 2px  ; 
+    color:rgb(240, 240, 247);
+    cursor: pointer;
+    margin:.2%;
+    margin-right: 90%;
+    background-color: rgb(64, 64, 180);
+
 }
