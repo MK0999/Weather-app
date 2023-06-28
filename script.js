@@ -16,7 +16,7 @@ const searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
 function weather(data){
 var APIkey ="2e0b3e407aa2d7aabd6a36e1042565fb";
 // Api of weather to get current weather
-var currenturl =`https://api.openweathermap.org/data/2.5/weather?q=${inputText.value}&appid=${APIkey}&units=metric`;
+var currenturl =`https://api.openweathermap.org/data/2.5/weather?q=${data}&appid=${APIkey}&units=metric`;
 fetch(currenturl).then(function (response) {
     if (response.ok) {
         response.json()
@@ -112,7 +112,7 @@ fetch(url).then(function (response) {
 
 }
  search.addEventListener("click", function(){
-  weather();
+  weather(inputText.value);
   cityweather(city);
  });
 
@@ -139,7 +139,11 @@ localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
 var searchHistoryCity = document.createElement('div');
 searchHistoryCity.textContent = city;
 searchHistoryCity.setAttribute('data-city', city);
+searchHistory.addEventListener('click', function(e){
+  weather(e.target.innerHTML)
+})
 searchContainer.append(searchHistoryCity);
   })
 
  }
+
