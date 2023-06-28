@@ -13,7 +13,7 @@ Ask Bcs
 ## SCREENSHOTS
 
 [!SEARCH CITY DATA](https://github.com/MK0999/shriveled/blob/main/screenshots/Screenshot%20(31).png)
-[!CITIES SEARCHED BEFORE](
+[!CITIES SEARCHED BEFORE](https://github.com/MK0999/shriveled/blob/main/screenshots/Screenshot%20(32).png)
 
 ## LINKS
 Repository link:
