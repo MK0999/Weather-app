@@ -19,5 +19,6 @@ Ask Bcs
 
 ## LINKS
 Repository link:https://github.com/MK0999/shriveled
-Deployed link:
+
+Deployed link: https://mk0999.github.io/shriveled/
 
